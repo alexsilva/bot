@@ -81,8 +81,8 @@ y = np.array([row[1] for row in training])
 # segunda camada de 64 neurônios e terceira camada de saída
 # contém número de neurônios igual ao número de intenções para prever a intenção de saída com softmax
 model = Sequential()
-model.add(Dense(64, input_shape=(len(x[0]),), activation='relu'))
-model.add(Dense(32, activation='relu'))
+model.add(Dense(128, input_shape=(len(x[0]),), activation='relu'))
+model.add(Dense(64, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(len(y[0]), activation='softmax'))
 
