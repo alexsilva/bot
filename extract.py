@@ -75,5 +75,6 @@ def get_response(intents, intents_json):
 			# usamos a função de random para pegar uma resposta randomica da nossa lista
 			result = random.choice(idx['responses'])
 			break
-
+	else:
+		result = None
 	return result
