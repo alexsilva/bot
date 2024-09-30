@@ -15,7 +15,7 @@ def clear_writing(writing):
 		Limpa todas as sentenças inseridas.
 	"""
 
-	# tokeniza todas as setenças das frases inseridas, lematiza cada uma delas e retorna
+	# tokeniza todas as sentenças das frases inseridas, lematiza cada uma delas e retorna
 	sentence_words = nltk.word_tokenize(writing)
 	return [lemmatizer.lemmatize(word.lower()) for word in sentence_words]
 
@@ -25,27 +25,27 @@ def clear_writing(writing):
 
 def bag_of_words(writing, words):
 	"""
-		Pega as sentenças que são limpas e cria um pacote de palavras que são usadas
-		para classes de previsão que são baseadas nos resultados que obtivemos treinando o modelo.
+		Pega as sentenças que são limpas e cria um pacote de palavras usadas
+		para classes de previsão baseadas nos resultados que obtivemos treinando o modelo.
 	"""
 	# tokenize the pattern
 	sentence_words = clear_writing(writing)
 
 	# cria uma matriz de N palavras
 	bag = [0] * len(words)
-	for setence in sentence_words:
+	for sentence in sentence_words:
 		for i, word in enumerate(words):
-			if word == setence:
-				# atribui 1 no pacote de palavra se a palavra atual estiver na posição da setença
+			if word == sentence:
+				# atribui 1 no pacote de palavra se a palavra atual estiver na posição da sentença
 				bag[i] = 1
 
-	return (np.array(bag))
+	return np.array(bag)
 
 
 def class_prediction(writing, model):
 	"""
-	  Faz a previsao do pacote de palavras, usamos como limite de erro 0.25 para evitarmos overfitting
-	  e classificamos esses resultados por força da probabilidade.
+	Faz a previsão do pacote de palavras, usamos como limite de erro 0.25 para evitarmos overfitting
+	e classificamos esses resultados por força da probabilidade.
 	"""
 
 	# filtra as previsões abaixo de um limite 0.25
@@ -65,7 +65,7 @@ def class_prediction(writing, model):
 
 def get_response(intents, intents_json):
 	"""
-		pega a lista gerada e verifica o arquivo json e produz a maior parte das respostas com a maior probabilidade.
+	Pega a lista gerada e verifica o arquivo json e produz a maioria das respostas com a maior probabilidade.
 	"""
 	tag = intents[0]['intent']
 	list_of_intents = intents_json['intents']
